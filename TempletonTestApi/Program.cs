@@ -1,3 +1,4 @@
+using TempletonTestApi.Clients.Converters;
 using TempletonTestApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,11 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddDependencies();
+
+builder.Services.ConfigureHttpJsonOptions(o =>
+{
+    o.SerializerOptions.Converters.Add(new ItemTypeConverter());
+});
 
 var app = builder.Build();
 

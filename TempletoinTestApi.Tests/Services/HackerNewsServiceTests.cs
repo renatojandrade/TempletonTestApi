@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using TempletonTestApi.Clients;
+using TempletonTestApi.Clients.Enums;
 using TempletonTestApi.Clients.Models;
 using TempletonTestApi.Options;
 using TempletonTestApi.Services;
@@ -26,8 +27,8 @@ public class HackerNewsServiceTests
     private static Mock<ILogger<HackerNewsService>> CreateLoggerMock() =>
         new Mock<ILogger<HackerNewsService>>();
 
-    private static Faker<HackerNewsStory> StoryFaker(string type = "story") =>
-        new Faker<HackerNewsStory>()
+    private static Faker<HackerNewsItem> StoryFaker(ItemType type = ItemType.Story) =>
+        new Faker<HackerNewsItem>()
             .RuleFor(s => s.Id, f => f.Random.Long(1, long.MaxValue))
             .RuleFor(s => s.Title, f => f.Lorem.Sentence(3))
             .RuleFor(s => s.Score, f => f.Random.Int(0, 5000))
@@ -86,9 +87,9 @@ public class HackerNewsServiceTests
         var opts = CreateOptions();
 
         var ids = new long[] { 10, 11, 12 };
-        var story1 = StoryFaker("story").RuleFor(s => s.Id, 10).RuleFor(s => s.Title, "ok-1").Generate();
-        var comment = StoryFaker("comment").RuleFor(s => s.Id, 11).RuleFor(s => s.Title, "should-skip").Generate();
-        var story2 = StoryFaker("story").RuleFor(s => s.Id, 12).RuleFor(s => s.Title, "ok-2").Generate();
+        var story1 = StoryFaker(ItemType.Story).RuleFor(s => s.Id, 10).RuleFor(s => s.Title, "ok-1").Generate();
+        var comment = StoryFaker(ItemType.Comment).RuleFor(s => s.Id, 11).RuleFor(s => s.Title, "should-skip").Generate();
+        var story2 = StoryFaker(ItemType.Story).RuleFor(s => s.Id, 12).RuleFor(s => s.Title, "ok-2").Generate();
 
         client.Setup(c => c.GetBestStoryIdsAsync(It.IsAny<CancellationToken>())).ReturnsAsync(ids);
         client.Setup(c => c.GetItemByIdAsync(10, It.IsAny<CancellationToken>())).ReturnsAsync(story1);

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 using TempletonTestApi.Clients;
+using TempletonTestApi.Clients.Enums;
 using TempletonTestApi.Clients.Models;
 using TempletonTestApi.Contracts.Dtos;
 using TempletonTestApi.Contracts.Services;
@@ -44,16 +45,16 @@ public class HackerNewsService: IHackerNewsService
 
         IEnumerable<long> ids = await _hackerNewsClient.GetBestStoryIdsAsync(cancellationToken);
 
-        var bag = new ConcurrentBag<HackerNewsStory>();
+        var bag = new ConcurrentBag<HackerNewsItem>();
 
         await Parallel.ForEachAsync(
             ids,
             new ParallelOptions { MaxDegreeOfParallelism = MaxDegreeOfParallelism, CancellationToken = cancellationToken },
             async (id, token) =>
             {
-                var story = await GetStoryCachedAsync(id, token);
-                if (story is not null && string.Equals(story.Type, "story", StringComparison.OrdinalIgnoreCase))
-                    bag.Add(story);
+                var item = await GetStoryCachedAsync(id, token);
+                if (item is not null && item.Type == ItemType.Story)
+                    bag.Add(item);
             });
 
         return bag
@@ -62,7 +63,7 @@ public class HackerNewsService: IHackerNewsService
             .Select(HackerStoryMapper.MapToDto);
     }
 
-    private Task<HackerNewsStory?> GetStoryCachedAsync(long id, CancellationToken cancellationToken)
+    private Task<HackerNewsItem?> GetStoryCachedAsync(long id, CancellationToken cancellationToken)
     {
         var key = $"{CacheKeyPrefix}:{id}";
         return _cache.GetOrCreateAsync(key, async entry =>

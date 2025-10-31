@@ -6,7 +6,7 @@ namespace TempletonTestApi.Extensions.Mappers;
 
 public static class HackerStoryMapper
 {
-    public static StoryDto MapToDto(HackerNewsStory newsStory)
+    public static StoryDto MapToDto(HackerNewsItem newsStory)
     {
         var time = DateTimeOffset.FromUnixTimeSeconds(newsStory.CreatedAt)
             .ToOffset(TimeSpan.Zero)

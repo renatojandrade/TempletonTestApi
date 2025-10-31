@@ -1,8 +1,10 @@
 ﻿using System.Text.Json.Serialization;
+using TempletonTestApi.Clients.Converters;
+using TempletonTestApi.Clients.Enums;
 
 namespace TempletonTestApi.Clients.Models;
 
-public sealed class HackerNewsStory
+public sealed class HackerNewsItem
 {
     [JsonPropertyName("by")]
     public string CreatedBy { get; set; } = string.Empty;
@@ -20,7 +22,8 @@ public sealed class HackerNewsStory
 
     public string Title { get; set; } = string.Empty;
 
-    public string Type { get; set; } = string.Empty;
+    [JsonConverter(typeof(ItemTypeConverter))]
+    public ItemType Type { get; set; }
 
     public string Url { get; set; } = string.Empty;
 }
