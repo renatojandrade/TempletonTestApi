@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempletonTestApi", "TempletonTestApi\TempletonTestApi.csproj", "{EEBAC81F-F350-409C-A191-619C5F804E5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempletoinTestApi.Tests", "TempletoinTestApi.Tests\TempletoinTestApi.Tests.csproj", "{18588BBB-B373-4DBB-A85D-9B01E05FE966}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{5DA1AAFD-C97B-9DA0-43CE-FF0997F98AA7}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEBAC81F-F350-409C-A191-619C5F804E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEBAC81F-F350-409C-A191-619C5F804E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEBAC81F-F350-409C-A191-619C5F804E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEBAC81F-F350-409C-A191-619C5F804E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18588BBB-B373-4DBB-A85D-9B01E05FE966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18588BBB-B373-4DBB-A85D-9B01E05FE966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18588BBB-B373-4DBB-A85D-9B01E05FE966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18588BBB-B373-4DBB-A85D-9B01E05FE966}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8B9887F-C0AC-4FEB-9B9A-DCE61707A2C4}
+	EndGlobalSection
+EndGlobal
